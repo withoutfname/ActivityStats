@@ -1,5 +1,28 @@
-venv/
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# PyQt/QML
+*.qmlc
+*.jsc
+
+# Logs and temp files
 *.log
+*.bak
+*.tmp
+
+# OS-specific
 .DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.sublime-project
+*.sublime-workspace
