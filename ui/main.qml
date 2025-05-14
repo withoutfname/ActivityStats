@@ -1,4 +1,3 @@
-// ui/main.qml
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
@@ -14,14 +13,15 @@ ApplicationWindow {
         anchors.margins: 10
 
         Label {
-            text: "Выберите игру"
+            text: "Select a game"
             font.pixelSize: 20
             Layout.alignment: Qt.AlignHCenter
         }
 
         ComboBox {
             Layout.fillWidth: true
-            model: ["Пока нет данных"] // Заглушка, позже заменим
+            model: controller.apps
+            textRole: "1" // Display alias (index 1 in [id, alias])
         }
     }
 }
