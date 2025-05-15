@@ -8,20 +8,36 @@ ApplicationWindow {
     height: 600
     title: "ActivityStats"
 
-    ColumnLayout {
+    // Store absolute paths for tabs
+    property var tabSources: [
+        Qt.resolvedUrl("../ui/pages/Dashboard.qml").toString(),
+        "", // Games (WIP)
+        "", // Time (WIP)
+        "", // Records (WIP)
+        ""  // Library (WIP)
+    ]
+
+    header: TabBar {
+        id: tabBar
+        width: parent.width
+
+        TabButton { text: "Dashboard" }
+        TabButton { text: "Games" }
+        TabButton { text: "Time" }
+        TabButton { text: "Records" }
+        TabButton { text: "Library" }
+    }
+
+    Loader {
+        id: pageLoader
         anchors.fill: parent
-        anchors.margins: 10
+        source: tabSources[tabBar.currentIndex]
+    }
 
-        Label {
-            text: "Select a game"
-            font.pixelSize: 20
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        ComboBox {
-            Layout.fillWidth: true
-            model: controller.apps
-            textRole: "1" // Display alias (index 1 in [id, alias])
-        }
+    Label {
+        anchors.centerIn: parent
+        text: "Page Not Implemented"
+        font.pixelSize: 20
+        visible: pageLoader.status !== Loader.Ready
     }
 }
