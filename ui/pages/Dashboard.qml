@@ -7,7 +7,7 @@ Item {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 20
-        spacing: 20
+        spacing: 10
 
         Label {
             text: "Your Gaming Stats"
@@ -51,7 +51,7 @@ Item {
 
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 10
+            spacing: 5
 
             Label {
                 text: "Select Period: " + (slider.value === 0 ? "Today" : slider.value === controller.maxIntervalDays ? "All Time" : slider.value + " days")
@@ -71,13 +71,14 @@ Item {
         }
 
         ChartView {
-            width: 300
-            height: 300
+            width: 1100
+            height: 500
             Layout.alignment: Qt.AlignHCenter
             antialiasing: true
-            backgroundColor: "#f0f0f0"
             legend.visible: true
             legend.alignment: Qt.AlignRight
+            legend.font.pixelSize: 18
+            margins.right: 50  // Увеличен правый отступ
 
             PieSeries {
                 id: pieSeries
@@ -88,6 +89,11 @@ Item {
                     if (data.length === 0) {
                         pieSeries.append("No Data", 1.0)
                         pieSeries.at(0).color = "#cccccc"
+                        pieSeries.at(0).labelPosition = PieSlice.LabelOutside
+                        pieSeries.at(0).labelArmLengthFactor = 0.3
+                        pieSeries.at(0).labelVisible = true
+                        pieSeries.at(0).borderWidth = 1
+                        pieSeries.at(0).borderColor = "black"
                         console.log("No data, added fallback slice")
                         return
                     }
@@ -99,6 +105,12 @@ Item {
                         var value = hours > 0 ? hours : 0.001
                         pieSeries.append(label, value)
                         pieSeries.at(i).color = name === "No Data" ? "#cccccc" : Qt.hsla(i / data.length, 0.7, 0.5, 1.0)
+                        pieSeries.at(i).labelPosition = PieSlice.LabelOutside
+                        pieSeries.at(i).labelFont.pixelSize = 10
+                        pieSeries.at(i).labelArmLengthFactor = 0.3
+                        pieSeries.at(i).labelVisible = true
+                        pieSeries.at(i).borderWidth = 1
+                        pieSeries.at(i).borderColor = "black"
                         console.log("Added slice:", label, value)
                     }
                 }

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals">
+    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (controller.py, dashboard.qml, database.py)  add chartview">
       <change afterPath="$PROJECT_DIR$/ui/pages/GameLibrary.qml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/pages/Dashboard.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Dashboard.qml" afterDir="false" />
     </list>
@@ -169,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747315937952</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat (controller.py, dashboard.qml, database.py)  add chartview">
+      <option name="closed" value="true" />
+      <created>1747319282555</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747319282555</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,6 +202,7 @@
     <MESSAGE value="add (dashboard.qml) Create Dashboard.qml with UI for displaying total playtime, top games, period selector (WIP), and pie chart placeholder, using Loader-based navigation." />
     <MESSAGE value="feat (main.qml)  using Loader-based navigation." />
     <MESSAGE value="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals" />
+    <MESSAGE value="feat (controller.py, dashboard.qml, database.py)  add chartview" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (controller.py, dashboard.qml, database.py)  add chartview" />
   </component>
 </project>

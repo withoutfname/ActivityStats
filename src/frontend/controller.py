@@ -37,7 +37,7 @@ class DashboardController(QObject):
             print(f"Raw games for pieChartData: {games}")
             if not games:
                 print("No games for pieChartData")
-                return [["No Data", 1.0]]  # Fallback for empty data
+                return [["No Data", 1.0]]
 
             total_hours = sum(hours for _, hours in games)
             print(f"Total hours for pieChartData: {total_hours}")
@@ -45,17 +45,29 @@ class DashboardController(QObject):
                 print("Zero total hours for pieChartData")
                 return [["No Data", 1.0]]
 
-            threshold = total_hours * 0.05  # 5% threshold
+            # Сортируем игры по убыванию времени
+            games_sorted = sorted(games, key=lambda x: x[1], reverse=True)
+
+            # Берем топ-5 игр или все, что больше 5% от общего времени
+            threshold = total_hours * 0.05
             major_games = []
             other_hours = 0
-            for name, hours in games:
-                if hours >= threshold:
+
+            for name, hours in games_sorted:
+                if len(major_games) < 5 or hours >= threshold:
                     major_games.append([str(name), float(hours)])
                 else:
                     other_hours += hours
 
+            # Добавляем "Other" только если есть что добавлять
             if other_hours > 0:
-                major_games.append(["Other", float(other_hours)])
+                # Проверяем, что Other будет не менее 5% от общего времени
+                if other_hours < total_hours * 0.05 and len(major_games) > 0:
+                    # Если Other слишком мал, добавляем к последней игре
+                    major_games[-1][1] += other_hours
+                    major_games[-1][0] += " and others"
+                else:
+                    major_games.append(["Other", float(other_hours)])
 
             print(f"pieChartData for {self._intervalDays} days: {major_games}")
             return major_games if major_games else [["No Data", 1.0]]
