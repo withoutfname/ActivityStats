@@ -16,6 +16,12 @@ Item {
         }
 
         Label {
+            text: "Tracking since: " + controller.trackingStartDate
+            font.pixelSize: 16
+            Layout.alignment: Qt.AlignHCenter
+        }
+
+        Label {
             text: "Total Playtime: " + controller.totalPlaytime.toFixed(1) + " hours"
             font.pixelSize: 20
             Layout.alignment: Qt.AlignHCenter
@@ -47,17 +53,19 @@ Item {
             spacing: 10
 
             Label {
-                text: "Select Period (WIP)"
+                text: "Select Period: " + (slider.value === 0 ? "Today" : slider.value === controller.maxIntervalDays ? "All Time" : slider.value + " days")
                 font.pixelSize: 18
                 Layout.alignment: Qt.AlignHCenter
             }
 
             Slider {
-                from: 1
-                to: 30
-                value: 1
+                id: slider
+                from: 0
+                to: controller.maxIntervalDays
+                value: 0
+                stepSize: 1
                 Layout.fillWidth: true
-                enabled: false
+                onValueChanged: controller.setIntervalDays(value)
             }
         }
 
