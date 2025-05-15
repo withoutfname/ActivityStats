@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import QtCharts 2.15
 
 Item {
     ColumnLayout {
@@ -69,15 +70,49 @@ Item {
             }
         }
 
-        Rectangle {
-            Layout.preferredWidth: 200
-            Layout.preferredHeight: 200
+        ChartView {
+            width: 300
+            height: 300
             Layout.alignment: Qt.AlignHCenter
-            color: "#ddd"
-            radius: 100
-            Label {
-                anchors.centerIn: parent
-                text: "Pie Chart (WIP)"
+            antialiasing: true
+            backgroundColor: "#f0f0f0"
+            legend.visible: true
+            legend.alignment: Qt.AlignRight
+
+            PieSeries {
+                id: pieSeries
+                function updateSlices() {
+                    console.log("Updating PieSeries, data:", JSON.stringify(controller.pieChartData))
+                    pieSeries.clear()
+                    var data = controller.pieChartData
+                    if (data.length === 0) {
+                        pieSeries.append("No Data", 1.0)
+                        pieSeries.at(0).color = "#cccccc"
+                        console.log("No data, added fallback slice")
+                        return
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        var name = data[i][0]
+                        var hours = data[i][1]
+                        var percent = controller.totalPlaytime > 0 ? (hours / controller.totalPlaytime * 100).toFixed(1) : 0
+                        var label = name + ": " + hours.toFixed(1) + "h (" + percent + "%)"
+                        var value = hours > 0 ? hours : 0.001
+                        pieSeries.append(label, value)
+                        pieSeries.at(i).color = name === "No Data" ? "#cccccc" : Qt.hsla(i / data.length, 0.7, 0.5, 1.0)
+                        console.log("Added slice:", label, value)
+                    }
+                }
+
+                Component.onCompleted: {
+                    updateSlices()
+                }
+
+                Connections {
+                    target: controller
+                    function onIntervalChanged() {
+                        pieSeries.updateSlices()
+                    }
+                }
             }
         }
 

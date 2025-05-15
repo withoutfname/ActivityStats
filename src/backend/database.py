@@ -3,6 +3,7 @@ from psycopg2 import Error
 from decimal import Decimal
 from datetime import datetime
 
+
 class Database:
     def __init__(self, dbname="activitydb", user="postgres", password="pass", host="localhost", port="5432"):
         self.connection = None
@@ -79,10 +80,10 @@ class Database:
             print(f"Error fetching top games: {e}")
             return []
 
-    def get_top_games_by_interval(self, days, limit=5):
-        """Get top games by playtime for the last N days"""
+    def get_top_games_by_interval(self, days, limit=None):
+        """Get games by playtime for the last N days"""
         try:
-            self.cursor.execute("""
+            query = """
                 SELECT 
                     COALESCE(a.alias, a.name) as name,
                     SUM(EXTRACT(EPOCH FROM (s.end_time - s.start_time))) / 3600.0
@@ -92,8 +93,13 @@ class Database:
                   AND start_time >= CURRENT_DATE - INTERVAL '%s days'
                 GROUP BY a.id, a.alias, a.name
                 ORDER BY SUM(EXTRACT(EPOCH FROM (s.end_time - s.start_time))) DESC
-                LIMIT %s
-            """, (days, limit))
+            """
+            params = (days,)
+            if limit is not None:
+                query += " LIMIT %s"
+                params = (days, limit)
+
+            self.cursor.execute(query, params)
             result = [(row[0], float(row[1])) for row in self.cursor.fetchall()]
             print(f"Top games for {days} days: {result}")
             return result
@@ -124,7 +130,7 @@ class Database:
             """)
             days = self.cursor.fetchone()[0]
             print(f"Max interval days: {days}")
-            return int(float(days)) if days is not None else 30  # Fallback to 30
+            return int(float(days)) if days is not None else 30
         except Error as e:
             print(f"Error fetching max interval: {e}")
             return 30

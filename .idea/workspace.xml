@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="add (frontend): implement controller for QML data binding">
+    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals">
+      <change afterPath="$PROJECT_DIR$/ui/pages/GameLibrary.qml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/main.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/pages/Dashboard.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Dashboard.qml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +52,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.controller.executor": "Run",
     "Python.database.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.resources.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master"
@@ -117,7 +121,55 @@
       <option name="project" value="LOCAL" />
       <updated>1747211495218</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat (frontend): connect controller to main.py for data binding">
+      <option name="closed" value="true" />
+      <created>1747211612346</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747211612346</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat(controller.py) - Implement controller.py with DashboardController, providing totalPlaytime and topGames properties, including debug logs and error handling.">
+      <option name="closed" value="true" />
+      <created>1747281650500</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747281650500</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat(main.py) - Add absolute path loading for main.qml, QML error handling, and debug logs for initialization steps.">
+      <option name="closed" value="true" />
+      <created>1747281689026</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747281689026</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add (dashboard.qml) Create Dashboard.qml with UI for displaying total playtime, top games, period selector (WIP), and pie chart placeholder, using Loader-based navigation.">
+      <option name="closed" value="true" />
+      <created>1747281719381</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747281719381</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat (main.qml)  using Loader-based navigation.">
+      <option name="closed" value="true" />
+      <created>1747281804591</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747281804591</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals">
+      <option name="closed" value="true" />
+      <created>1747315937952</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747315937952</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,6 +189,12 @@
     <MESSAGE value="feat(ui): add main application screen in main.qml" />
     <MESSAGE value="add (backend): implement database connection in database.py" />
     <MESSAGE value="add (frontend): implement controller for QML data binding" />
-    <option name="LAST_COMMIT_MESSAGE" value="add (frontend): implement controller for QML data binding" />
+    <MESSAGE value="feat (frontend): connect controller to main.py for data binding" />
+    <MESSAGE value="feat(controller.py) - Implement controller.py with DashboardController, providing totalPlaytime and topGames properties, including debug logs and error handling." />
+    <MESSAGE value="feat(main.py) - Add absolute path loading for main.qml, QML error handling, and debug logs for initialization steps." />
+    <MESSAGE value="add (dashboard.qml) Create Dashboard.qml with UI for displaying total playtime, top games, period selector (WIP), and pie chart placeholder, using Loader-based navigation." />
+    <MESSAGE value="feat (main.qml)  using Loader-based navigation." />
+    <MESSAGE value="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals" />
   </component>
 </project>
