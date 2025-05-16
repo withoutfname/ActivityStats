@@ -17,13 +17,13 @@ Item {
         }
 
         Label {
-            text: "Tracking since: " + controller.trackingStartDate
+            text: "Tracking since: " + dashboardController.trackingStartDate
             font.pixelSize: 16
             Layout.alignment: Qt.AlignHCenter
         }
 
         Label {
-            text: "Total Playtime: " + controller.totalPlaytime.toFixed(1) + " hours"
+            text: "Total Playtime: " + dashboardController.totalPlaytime.toFixed(1) + " hours"
             font.pixelSize: 20
             Layout.alignment: Qt.AlignHCenter
         }
@@ -40,7 +40,7 @@ Item {
             }
 
             Repeater {
-                model: controller.topGames
+                model: dashboardController.topGames
                 Label {
                     text: modelData[0] + ": " + modelData[1].toFixed(1) + " hours"
                     font.pixelSize: 16
@@ -54,7 +54,7 @@ Item {
             spacing: 5
 
             Label {
-                text: "Select Period: " + (slider.value === 0 ? "Today" : slider.value === controller.maxIntervalDays ? "All Time" : slider.value + " days")
+                text: "Select Period: " + (slider.value === 0 ? "Today" : slider.value === dashboardController.maxIntervalDays ? "All Time" : slider.value + " days")
                 font.pixelSize: 18
                 Layout.alignment: Qt.AlignHCenter
             }
@@ -62,11 +62,11 @@ Item {
             Slider {
                 id: slider
                 from: 0
-                to: controller.maxIntervalDays
+                to: dashboardController.maxIntervalDays
                 value: 0
                 stepSize: 1
                 Layout.fillWidth: true
-                onValueChanged: controller.setIntervalDays(value)
+                onValueChanged: dashboardController.setIntervalDays(value)
             }
         }
 
@@ -78,29 +78,19 @@ Item {
             legend.visible: true
             legend.alignment: Qt.AlignRight
             legend.font.pixelSize: 18
-            margins.right: 50  // Увеличен правый отступ
+            margins.right: 50
 
             PieSeries {
                 id: pieSeries
+                visible: dashboardController.pieChartData.length > 0 && dashboardController.pieChartData[0][0] !== "No Data"
                 function updateSlices() {
-                    console.log("Updating PieSeries, data:", JSON.stringify(controller.pieChartData))
+                    console.log("Updating PieSeries, data:", JSON.stringify(dashboardController.pieChartData))
                     pieSeries.clear()
-                    var data = controller.pieChartData
-                    if (data.length === 0) {
-                        pieSeries.append("No Data", 1.0)
-                        pieSeries.at(0).color = "#cccccc"
-                        pieSeries.at(0).labelPosition = PieSlice.LabelOutside
-                        pieSeries.at(0).labelArmLengthFactor = 0.3
-                        pieSeries.at(0).labelVisible = true
-                        pieSeries.at(0).borderWidth = 1
-                        pieSeries.at(0).borderColor = "black"
-                        console.log("No data, added fallback slice")
-                        return
-                    }
+                    var data = dashboardController.pieChartData
                     for (var i = 0; i < data.length; i++) {
                         var name = data[i][0]
                         var hours = data[i][1]
-                        var percent = controller.totalPlaytime > 0 ? (hours / controller.totalPlaytime * 100).toFixed(1) : 0
+                        var percent = dashboardController.totalPlaytime > 0 ? (hours / dashboardController.totalPlaytime * 100).toFixed(1) : 0
                         var label = name + ": " + hours.toFixed(1) + "h (" + percent + "%)"
                         var value = hours > 0 ? hours : 0.001
                         pieSeries.append(label, value)
@@ -120,10 +110,24 @@ Item {
                 }
 
                 Connections {
-                    target: controller
+                    target: dashboardController
                     function onIntervalChanged() {
                         pieSeries.updateSlices()
                     }
+                }
+            }
+
+            Rectangle {
+                visible: dashboardController.pieChartData.length === 0 || dashboardController.pieChartData[0][0] === "No Data"
+                width: parent.width
+                height: parent.height
+                color: "white"
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "🎮 No gaming today! Time to play? 😄"
+                    font.pixelSize: 16
+                    color: "black"
                 }
             }
         }
