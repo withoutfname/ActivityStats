@@ -12,7 +12,6 @@ ApplicationWindow {
     property var tabSources: [
         Qt.resolvedUrl("../ui/pages/Dashboard.qml").toString(),
         Qt.resolvedUrl("../ui/pages/Time.qml").toString(),
-
         "", // Time (WIP)
         "", // Records (WIP)
         ""  // Library (WIP)
@@ -23,8 +22,8 @@ ApplicationWindow {
         width: parent.width
 
         TabButton { text: "Dashboard" }
-        TabButton { text: "Games" }
         TabButton { text: "Time" }
+        TabButton { text: "Games" }
         TabButton { text: "Records" }
         TabButton { text: "Library" }
     }

@@ -10,10 +10,10 @@ class DashboardController(QObject):
         #print("DashboardController initialized")
 
     @pyqtProperty(float, notify=intervalChanged)
-    def totalPlaytime(self):
+    def totalFullPlaytime(self):
         try:
-            result = self.stats_service.get_total_playtime(start_days=self._intervalDays)
-            #print(f"totalPlaytime for {self._intervalDays} days: {result}")
+            result = self.stats_service.get_full_total_playtime(start_days=self._intervalDays)
+            print(f"totalFullPlaytime for {self._intervalDays} days: {result}")
             return float(result) if result is not None else 0.0
         except Exception as e:
             #print(f"Error in totalPlaytime: {e}")
@@ -23,7 +23,7 @@ class DashboardController(QObject):
     def topGames(self):
         try:
             result = self.stats_service.get_top_games(start_days=self._intervalDays, limit=5)
-            #print(f"topGames for {self._intervalDays} days: {result}")
+            print(f"topGames for {self._intervalDays} days: {result}")
             games = [[str(name), float(hours)] for name, hours in result]
             return games
         except Exception as e:
@@ -36,7 +36,7 @@ class DashboardController(QObject):
             games = self.stats_service.get_top_games(start_days=self._intervalDays)
             #print(f"Raw games for pieChartData: {games}")
             if not games:
-                #print("No games for pieChartData")
+                print("No games for pieChartData")
                 return [["No Data", 1.0]]
 
             total_hours = sum(hours for _, hours in games)

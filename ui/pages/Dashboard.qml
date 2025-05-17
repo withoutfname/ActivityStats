@@ -23,7 +23,7 @@ Item {
         }
 
         Label {
-            text: "Total Playtime: " + dashboardController.totalPlaytime.toFixed(1) + " hours"
+            text: "Total Playtime: " + dashboardController.totalFullPlaytime.toFixed(1) + " hours"
             font.pixelSize: 20
             Layout.alignment: Qt.AlignHCenter
         }
@@ -90,7 +90,7 @@ Item {
                     for (var i = 0; i < data.length; i++) {
                         var name = data[i][0]
                         var hours = data[i][1]
-                        var percent = dashboardController.totalPlaytime > 0 ? (hours / dashboardController.totalPlaytime * 100).toFixed(1) : 0
+                        var percent = dashboardController.totalFullPlaytime > 0 ? (hours / dashboardController.totalFullPlaytime * 100).toFixed(1) : 0
                         var label = name + ": " + hours.toFixed(1) + "h (" + percent + "%)"
                         var value = hours > 0 ? hours : 0.001
                         pieSeries.append(label, value)

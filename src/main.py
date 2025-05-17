@@ -4,7 +4,6 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtWidgets import QApplication
 from src.backend.database import Database
-from src.backend.repositories.app_repository import AppRepository
 from src.backend.services.stats_service import StatsService
 from src.frontend.controllers import DashboardController, TimeController
 
@@ -22,8 +21,7 @@ if __name__ == "__main__":
         sys.exit(-1)
 
     # Initialize repositories and service
-    app_repo = AppRepository(db)
-    stats_service = StatsService(db, app_repo)
+    stats_service = StatsService(db)
 
     # Create controllers
     try:
