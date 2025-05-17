@@ -4,11 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (controller.py, dashboard.qml, database.py)  add chartview">
-      <change afterPath="$PROJECT_DIR$/ui/pages/GameLibrary.qml" afterDir="false" />
+    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (dashboard.qml)  handling a case with missing information">
+      <change afterPath="$PROJECT_DIR$/src/backend/repositories/max_session_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/repositories/metadata_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/repositories/session_stats_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/repositories/time_analysis_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/services/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/services/stats_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/controllers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/controllers/dashboard_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/controllers/time_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/pages/Time.qml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/pages/Dashboard.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Dashboard.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/readm.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/app_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/controller.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/base_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/main.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.qml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +66,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.app_repository.executor": "Run",
     "Python.controller.executor": "Run",
     "Python.database.executor": "Run",
     "Python.main.executor": "Run",
@@ -176,7 +192,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747319282555</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat (controller.py, dashboard.qml)  chartview is done">
+      <option name="closed" value="true" />
+      <created>1747321662793</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747321662793</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat (dashboard.qml)  handling a case with missing information">
+      <option name="closed" value="true" />
+      <created>1747365855737</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747365855737</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +235,8 @@
     <MESSAGE value="feat (main.qml)  using Loader-based navigation." />
     <MESSAGE value="feat (controller.py, dashboard.qml, database.py)  add start tracking day, total time, top games and intervals" />
     <MESSAGE value="feat (controller.py, dashboard.qml, database.py)  add chartview" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (controller.py, dashboard.qml, database.py)  add chartview" />
+    <MESSAGE value="feat (controller.py, dashboard.qml)  chartview is done" />
+    <MESSAGE value="feat (dashboard.qml)  handling a case with missing information" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (dashboard.qml)  handling a case with missing information" />
   </component>
 </project>

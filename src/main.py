@@ -4,7 +4,9 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtWidgets import QApplication
 from src.backend.database import Database
-from src.frontend.controller import DashboardController
+from src.backend.repositories.app_repository import AppRepository
+from src.backend.services.stats_service import StatsService
+from src.frontend.controllers import DashboardController, TimeController
 
 if __name__ == "__main__":
     print("Starting application...")
@@ -19,10 +21,15 @@ if __name__ == "__main__":
         print(f"Database error: {e}")
         sys.exit(-1)
 
-    # Create controller
+    # Initialize repositories and service
+    app_repo = AppRepository(db)
+    stats_service = StatsService(db, app_repo)
+
+    # Create controllers
     try:
-        controller = DashboardController(db)
-        print("Controller created")
+        dashboard_controller = DashboardController(stats_service)
+        time_controller = TimeController(stats_service)
+        print("Controllers created")
     except Exception as e:
         print(f"Controller error: {e}")
         sys.exit(-1)
@@ -31,20 +38,19 @@ if __name__ == "__main__":
     print("Setting up QML engine...")
     engine = QQmlApplicationEngine()
 
-
     # Connect error signals
     def handle_qml_error(error):
         print(f"QML Error: {error.toString()}")
         for e in error.errors():
             print(f"  {e.toString()}")
 
-
     engine.warnings.connect(handle_qml_error)
     print("QML error handler connected")
 
-    # Set controller
-    engine.rootContext().setContextProperty("controller", controller)
-    print("Controller set in QML context")
+    # Set controllers in QML context
+    engine.rootContext().setContextProperty("dashboardController", dashboard_controller)
+    engine.rootContext().setContextProperty("timeController", time_controller)
+    print("Controllers set in QML context")
 
     # Load QML with absolute path
     print("Loading QML...")

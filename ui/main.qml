@@ -11,7 +11,8 @@ ApplicationWindow {
     // Store absolute paths for tabs
     property var tabSources: [
         Qt.resolvedUrl("../ui/pages/Dashboard.qml").toString(),
-        "", // Games (WIP)
+        Qt.resolvedUrl("../ui/pages/Time.qml").toString(),
+
         "", // Time (WIP)
         "", // Records (WIP)
         ""  // Library (WIP)
