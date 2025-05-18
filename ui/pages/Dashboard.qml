@@ -4,6 +4,12 @@ import QtQuick.Layouts 1.15
 import QtCharts 2.15
 
 Item {
+
+    Component.onCompleted: {
+        slider.value = 0
+        dashboardController.setIntervalDays(0)
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 20
@@ -54,7 +60,13 @@ Item {
             spacing: 5
 
             Label {
-                text: "Select Period: " + (slider.value === 0 ? "Today" : slider.value === dashboardController.maxIntervalDays ? "All Time" : slider.value + " days")
+                text: {
+                    var periodText = slider.value === 0 ? "Today" :
+                                    slider.value === dashboardController.maxIntervalDays ? "All Time" :
+                                    slider.value + " days";
+                    var startDate = Qt.formatDate(new Date(dashboardController.intervalStartDate), "dd-MM-yyyy");
+                    return "Select Period: " + periodText + (slider.value === 0 ? "" : " (" + startDate + ")")
+                }
                 font.pixelSize: 18
                 Layout.alignment: Qt.AlignHCenter
             }

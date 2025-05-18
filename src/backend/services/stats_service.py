@@ -1,13 +1,15 @@
-from src.backend.repositories import TimeStatsRepository, MetadataRepository, SessionCountRepository, AppRepository
+from src.backend.repositories import TimeStatsRepository, MetadataRepository, SessionCountRepository, AppRepository, \
+    DayRepository, MaxSessionRepository
 from datetime import datetime
 
 class StatsService:
     def __init__(self, db):
-
         self.time_stats_repo = TimeStatsRepository(db)
         self.metadata_repo = MetadataRepository(db)
-        self.app_repo = AppRepository
-        self.session_count_repo = SessionCountRepository
+        self.app_repo = AppRepository(db)
+        self.session_count_repo = SessionCountRepository(db)
+        self.day_repo = DayRepository(db)
+        self.max_session_repo = MaxSessionRepository(db)
 
     def get_full_total_playtime(self, start_days=None, end_days=None):
         total_seconds = self.time_stats_repo.get_full_total_seconds(start_days, end_days)
@@ -26,8 +28,42 @@ class StatsService:
     def get_max_interval_days(self):
         return self.metadata_repo.get_max_interval_days()
 
+    def get_active_days_count(self, start_days=None, end_days=None):
+        return self.day_repo.get_active_days_count(start_days, end_days)
+
     def get_full_session_count(self, start_days=None, end_days=None):
         return self.session_count_repo.get_full_session_count(start_days, end_days)
 
     def get_simp_session_count(self, start_days=None, end_days=None):
         return self.session_count_repo.get_simp_session_count(start_days, end_days)
+
+    def get_avg_interval_playtime(self, start_days=None, end_days=None):
+        simp_count = self.get_simp_session_count(start_days, end_days)
+        if simp_count == 0:
+            return 0.0  # Избегаем деления на 0
+        avg_simp_time = self.get_simp_total_playtime(start_days, end_days) / simp_count
+        return round(avg_simp_time, 2)  # Округляем до 2 знаков
+
+    def get_avg_day_playtime(self, start_days=None, end_days=None):
+        simp_total_seconds = self.time_stats_repo.get_simp_total_seconds(start_days, end_days)
+        active_days = self.get_active_days_count(start_days, end_days)
+        if active_days == 0:
+            return 0.0
+        return (simp_total_seconds / 3600.0) / active_days
+
+    def get_max_session_duration(self, start_days=None, end_days=None):
+        duration, game_name, date = self.max_session_repo.get_max_session_duration(start_days, end_days)
+        return (duration, game_name, date)
+
+    def get_max_daily_game_session(self, start_days=None, end_days=None):
+        duration, date, game_name, session_count = self.max_session_repo.get_max_daily_game_session(start_days,
+                                                                                                    end_days)
+        return (duration, date, game_name, session_count)
+
+    def get_max_daily_total_duration(self, start_days=None, end_days=None):
+        duration, date, game_details = self.max_session_repo.get_max_daily_total_duration(start_days, end_days)
+        return (duration, date, game_details)
+
+
+
+

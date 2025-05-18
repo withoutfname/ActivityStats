@@ -1,20 +1,20 @@
-from .base_repository import BaseRepository
+from src.backend.database import Database
 
-class MetadataRepository(BaseRepository):
+class MetadataRepository:
+    def __init__(self, db):
+        self.db = db
+
     def get_tracking_start_date(self):
-        query = """
-            SELECT MIN(start_time)
-            FROM activity_sessions
-        """
-        start_date = self.execute_query(query, fetch_one=True)
-        #print(f"Tracking start date: {start_date}")
-        return start_date.strftime("%Y-%m-%d") if start_date else "Unknown"
+        query = "SELECT MIN(start_time) FROM activity_sessions"
+        self.db.cursor.execute(query)
+        result = self.db.cursor.fetchone()
+        return result[0] if result else "Unknown"
 
     def get_max_interval_days(self):
         query = """
-            SELECT DATE(CURRENT_DATE) - DATE(MIN(start_time))
+            SELECT EXTRACT(DAY FROM (CURRENT_DATE - MIN(start_time))) + 1 
             FROM activity_sessions
         """
-        days = self.execute_query(query, fetch_one=True)
-        #print(f"Max interval days: {days}")
-        return int(days) if days is not None else 30
+        self.db.cursor.execute(query)
+        result = self.db.cursor.fetchone()
+        return int(result[0])
