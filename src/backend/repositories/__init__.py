@@ -1,5 +1,6 @@
-from .base_repository import BaseRepository
 from .time_stats_repository import TimeStatsRepository
 from .metadata_repository import MetadataRepository
 from .session_count_repository import SessionCountRepository
 from .app_repository import AppRepository
+from .day_repository import DayRepository
+from .max_session_repository import MaxSessionRepository

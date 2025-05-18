@@ -13,6 +13,7 @@ class Database:
                 host=host,
                 port=port
             )
+            self.connection.autocommit = True  # Включаем автокоммит
             self.cursor = self.connection.cursor()
             print("Database connection successful")
         except Error as e:
