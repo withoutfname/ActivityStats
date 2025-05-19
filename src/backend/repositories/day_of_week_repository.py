@@ -7,6 +7,8 @@ class DayOfWeekRepository:
         self.db = db
         self.timezone = pytz.timezone("Europe/Paris")  # CEST
 
+
+
     def get_playtime_by_day_of_week(self, start_days=0, end_days=120):
         # Устанавливаем текущую дату (19 мая 2025, 06:03 AM CEST)
         current_date = datetime(2025, 5, 19, 6, 3, tzinfo=self.timezone)
