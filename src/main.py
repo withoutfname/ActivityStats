@@ -12,6 +12,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     print("QApplication created")
 
+
+
     # Initialize database
     try:
         db = Database()
