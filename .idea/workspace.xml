@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="Refactor: split code into modules">
+    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (time.qml) add max_session_duration, max_daily_game_session, max_daily_total_duration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/app_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/app_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/base_repository.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/max_session_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/max_session_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/metadata_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/metadata_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/session_count_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/session_count_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/time_analysis_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/day_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/time_stats_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/time_stats_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/services/stats_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/services/stats_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/controllers/dashboard_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controllers/dashboard_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/controllers/time_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controllers/time_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/pages/Dashboard.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Dashboard.qml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/pages/Time.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Time.qml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +61,7 @@
     &quot;Python.time_stats_repository.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;398b3728&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -254,6 +242,7 @@
     <MESSAGE value="feat (controller.py, dashboard.qml)  chartview is done" />
     <MESSAGE value="feat (dashboard.qml)  handling a case with missing information" />
     <MESSAGE value="Refactor: split code into modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: split code into modules" />
+    <MESSAGE value="feat (time.qml) add max_session_duration, max_daily_game_session, max_daily_total_duration" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (time.qml) add max_session_duration, max_daily_game_session, max_daily_total_duration" />
   </component>
 </project>
