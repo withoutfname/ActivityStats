@@ -1,6 +1,4 @@
-from src.backend.repositories import TimeStatsRepository, MetadataRepository, SessionCountRepository, AppRepository, \
-    DayRepository, MaxSessionRepository
-from datetime import datetime
+from src.backend.repositories import *
 
 class StatsService:
     def __init__(self, db):
@@ -10,6 +8,7 @@ class StatsService:
         self.session_count_repo = SessionCountRepository(db)
         self.day_repo = DayRepository(db)
         self.max_session_repo = MaxSessionRepository(db)
+        self.day_of_week_repo = DayOfWeekRepository(db)
 
     def get_full_total_playtime(self, start_days=None, end_days=None):
         total_seconds = self.time_stats_repo.get_full_total_seconds(start_days, end_days)
@@ -63,6 +62,9 @@ class StatsService:
     def get_max_daily_total_duration(self, start_days=None, end_days=None):
         duration, date, game_details = self.max_session_repo.get_max_daily_total_duration(start_days, end_days)
         return (duration, date, game_details)
+
+    def get_playtime_by_day_of_week(self, start_days=None, end_days=None):
+        return self.day_of_week_repo.get_playtime_by_day_of_week(start_days, end_days)
 
 
 

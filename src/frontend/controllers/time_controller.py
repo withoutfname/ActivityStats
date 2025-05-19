@@ -80,9 +80,9 @@ class TimeController(QObject):
             return 0
 
     @pyqtProperty(int, notify=intervalChanged)
-    def simpTotalPlaytime(self):
+    def fullTotalPlaytime(self):
         try:
-            result = self.stats_service.get_simp_total_playtime(self._startDays, self._endDays)
+            result = self.stats_service.get_full_total_playtime(self._startDays, self._endDays)
             return int(result) if result is not None else 0
         except Exception as e:
             print(f"Error in simpSessionCount: {e}")
@@ -116,3 +116,12 @@ class TimeController(QObject):
         except Exception as e:
             print(f"Error in maxDailyTotalDuration: {e}")
             return [0.0, '', '']
+
+    @pyqtProperty('QVariantList', notify=intervalChanged)
+    def playtimeByDayOfWeek(self):
+        try:
+            playtime = self.stats_service.get_playtime_by_day_of_week(self._startDays, self._endDays)
+            return [float(x) for x in playtime]
+        except Exception as e:
+            print(f"Error in playtimeByDayOfWeek: {e}")
+            return [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]

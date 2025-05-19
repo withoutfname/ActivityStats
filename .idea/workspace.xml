@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (time.qml) add max_session_duration, max_daily_game_session, max_daily_total_duration">
+    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (time.qml) add day of week stats">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/controllers/time_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controllers/time_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/pages/Time.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Time.qml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,23 +45,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app_repository.executor&quot;: &quot;Run&quot;,
-    &quot;Python.controller.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dashboard_controller.executor&quot;: &quot;Run&quot;,
-    &quot;Python.database.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.resources.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stats_service.executor&quot;: &quot;Run&quot;,
-    &quot;Python.time_stats_repository.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;398b3728&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.__init__.executor": "Run",
+    "Python.app_repository.executor": "Run",
+    "Python.controller.executor": "Run",
+    "Python.dashboard_controller.executor": "Run",
+    "Python.database.executor": "Run",
+    "Python.day_of_week_repository.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.resources.executor": "Run",
+    "Python.stats_service.executor": "Run",
+    "Python.time_stats_repository.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "624b8e84"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\src" />
@@ -212,7 +211,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747501574787</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat (time.qml) add total interval playtime">
+      <option name="closed" value="true" />
+      <created>1747626372464</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747626372464</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat (time.qml) add day of week stats">
+      <option name="closed" value="true" />
+      <created>1747628560605</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747628560605</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,6 +258,8 @@
     <MESSAGE value="feat (dashboard.qml)  handling a case with missing information" />
     <MESSAGE value="Refactor: split code into modules" />
     <MESSAGE value="feat (time.qml) add max_session_duration, max_daily_game_session, max_daily_total_duration" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (time.qml) add max_session_duration, max_daily_game_session, max_daily_total_duration" />
+    <MESSAGE value="feat (time.qml) add total interval playtime" />
+    <MESSAGE value="feat (time.qml) add day of week stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (time.qml) add day of week stats" />
   </component>
 </project>
