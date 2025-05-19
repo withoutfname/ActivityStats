@@ -40,6 +40,8 @@ class TimeController(QObject):
         date = self._currentDate - timedelta(days=self._endDays)
         return date.strftime("%Y-%m-%d")
 
+
+
     @pyqtProperty(int, constant=True)
     def maxIntervalDays(self):
         try:
@@ -72,6 +74,15 @@ class TimeController(QObject):
     def simpSessionCount(self):
         try:
             result = self.stats_service.get_simp_session_count(self._startDays, self._endDays)
+            return int(result) if result is not None else 0
+        except Exception as e:
+            print(f"Error in simpSessionCount: {e}")
+            return 0
+
+    @pyqtProperty(int, notify=intervalChanged)
+    def simpTotalPlaytime(self):
+        try:
+            result = self.stats_service.get_simp_total_playtime(self._startDays, self._endDays)
             return int(result) if result is not None else 0
         except Exception as e:
             print(f"Error in simpSessionCount: {e}")

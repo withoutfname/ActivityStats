@@ -39,9 +39,15 @@ Item {
             text: {
                 var start = Qt.formatDate(new Date(timeController.startDate), "dd-MM-yyyy");
                 var end = Qt.formatDate(new Date(timeController.endDate), "dd-MM-yyyy");
-                return "Period: " + end + " to " + start
+                return "Period: " + start + " to " + end
             }
             font.pixelSize: 18
+            Layout.alignment: Qt.AlignHCenter
+        }
+
+        Label {
+            text: "Total Playtime: " + timeController.simpTotalPlaytime + " hours"
+            font.pixelSize: 20
             Layout.alignment: Qt.AlignHCenter
         }
 
