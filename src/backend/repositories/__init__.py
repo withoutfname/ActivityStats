@@ -4,3 +4,4 @@ from .session_count_repository import SessionCountRepository
 from .app_repository import AppRepository
 from .day_repository import DayRepository
 from .max_session_repository import MaxSessionRepository
+from .day_of_week_repository import DayOfWeekRepository
