@@ -9,6 +9,8 @@ class StatsService:
         self.day_repo = DayRepository(db)
         self.max_session_repo = MaxSessionRepository(db)
         self.day_of_week_repo = DayOfWeekRepository(db)
+        self.time_of_day_repo = TimeOfDayRepository(db)
+        self.consecutive_days_repo = ConsecutiveDaysRepository(db)
 
     def get_full_total_playtime(self, start_days=None, end_days=None):
         total_seconds = self.time_stats_repo.get_full_total_seconds(start_days, end_days)
@@ -65,6 +67,13 @@ class StatsService:
 
     def get_playtime_by_day_of_week(self, start_days=None, end_days=None):
         return self.day_of_week_repo.get_playtime_by_day_of_week(start_days, end_days)
+
+    def get_playtime_by_time_of_day(self, start_days=None, end_days=None):
+        return self.time_of_day_repo.get_playtime_by_time_of_day(start_days, end_days)
+
+    def get_max_consecutive_days(self, start_days=None, end_days=None):
+        streak, start_date, end_date = self.consecutive_days_repo.get_max_consecutive_days(start_days, end_days)
+        return (streak, start_date, end_date)
 
 
 

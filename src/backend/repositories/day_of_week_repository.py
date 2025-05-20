@@ -5,13 +5,11 @@ import pytz
 class DayOfWeekRepository:
     def __init__(self, db):
         self.db = db
-        self.timezone = pytz.timezone("Europe/Paris")  # CEST
+        self.timezone = pytz.timezone("Asia/Yekaterinburg")  # UTC+5 для Уфы/Екатеринбурга
 
-
-
-    def get_playtime_by_day_of_week(self, start_days=0, end_days=120):
-        # Устанавливаем текущую дату (19 мая 2025, 06:03 AM CEST)
-        current_date = datetime(2025, 5, 19, 6, 3, tzinfo=self.timezone)
+    def get_playtime_by_day_of_week(self, start_days, end_days):
+        # Получаем текущую дату и время в заданной таймзоне
+        current_date = datetime.now(self.timezone)
 
         # Формируем интервал дат
         start, end = max(start_days, end_days), min(start_days, end_days)

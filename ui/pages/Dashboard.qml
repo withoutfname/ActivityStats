@@ -6,8 +6,8 @@ import QtCharts 2.15
 Item {
 
     Component.onCompleted: {
-        slider.value = 0
-        dashboardController.setIntervalDays(0)
+        slider.value = dashboardController.maxIntervalDays
+        dashboardController.setIntervalDays(dashboardController.maxIntervalDays)
     }
 
     ColumnLayout {

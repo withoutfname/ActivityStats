@@ -12,7 +12,7 @@ class MetadataRepository:
 
     def get_max_interval_days(self):
         query = """
-            SELECT EXTRACT(DAY FROM (CURRENT_DATE - MIN(start_time))) + 1 
+            SELECT EXTRACT(DAY FROM (CURRENT_DATE - MIN(start_time))) + 2 
             FROM activity_sessions
         """
         self.db.cursor.execute(query)

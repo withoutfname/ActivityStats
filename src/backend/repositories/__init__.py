@@ -5,3 +5,5 @@ from .app_repository import AppRepository
 from .day_repository import DayRepository
 from .max_session_repository import MaxSessionRepository
 from .day_of_week_repository import DayOfWeekRepository
+from .time_of_day_repository import TimeOfDayRepository
+from .consecutive_days_repository import ConsecutiveDaysRepository

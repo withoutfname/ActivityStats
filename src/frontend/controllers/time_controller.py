@@ -80,6 +80,15 @@ class TimeController(QObject):
             return 0
 
     @pyqtProperty(int, notify=intervalChanged)
+    def fullSessionCount(self):
+        try:
+            result = self.stats_service.get_full_session_count(self._startDays, self._endDays)
+            return int(result) if result is not None else 0
+        except Exception as e:
+            print(f"Error in fullSessionCount: {e}")
+            return 0
+
+    @pyqtProperty(int, notify=intervalChanged)
     def fullTotalPlaytime(self):
         try:
             result = self.stats_service.get_full_total_playtime(self._startDays, self._endDays)
@@ -125,3 +134,24 @@ class TimeController(QObject):
         except Exception as e:
             print(f"Error in playtimeByDayOfWeek: {e}")
             return [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+    @pyqtProperty('QVariantList', notify=intervalChanged)
+    def playtimeByTimeOfDay(self):
+        try:
+            playtime = self.stats_service.get_playtime_by_time_of_day(self._startDays, self._endDays)
+            return [float(playtime.get("Morning", 0.0)), float(playtime.get("Afternoon", 0.0)),
+                    float(playtime.get("Evening", 0.0)), float(playtime.get("Night", 0.0))]
+        except Exception as e:
+            print(f"Error in playtimeByTimeOfDay: {e}")
+            return [0.0, 0.0, 0.0, 0.0]
+
+    @pyqtProperty('QVariantList', notify=intervalChanged)
+    def maxConsecutiveDays(self):
+        try:
+            streak, start_date, end_date = self.stats_service.get_max_consecutive_days(self._startDays, self._endDays)
+            start_str = start_date.strftime('%d-%m-%Y') if start_date else ''
+            end_str = end_date.strftime('%d-%m-%Y') if end_date else ''
+            return [int(streak), start_str, end_str]
+        except Exception as e:
+            print(f"Error in maxConsecutiveDays: {e}")
+            return [0, '', '']
