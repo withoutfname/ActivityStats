@@ -1,30 +1,32 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import QtQuick.Window 2.15
 
 ApplicationWindow {
+    id: window
     visible: true
-    width: 800
-    height: 600
     title: "ActivityStats"
+    visibility: Window.Maximized
 
-    // Store absolute paths for tabs
+    Component.onCompleted: {
+        console.log("Window width:", window.width)
+        console.log("Window height:", window.height)
+        console.log("Screen width:", Screen.width)
+        console.log("Screen height:", Screen.height)
+    }
+
     property var tabSources: [
         Qt.resolvedUrl("../ui/pages/Dashboard.qml").toString(),
         Qt.resolvedUrl("../ui/pages/Time.qml").toString(),
-        "", // Time (WIP)
-        "", // Records (WIP)
-        ""  // Library (WIP)
+        Qt.resolvedUrl("../ui/pages/Library.qml").toString()
     ]
 
     header: TabBar {
         id: tabBar
         width: parent.width
-
-        TabButton { text: "Dashboard" }
+         TabButton { text: "Dashboard" }
         TabButton { text: "Time" }
-        TabButton { text: "Games" }
-        TabButton { text: "Records" }
         TabButton { text: "Library" }
     }
 
@@ -39,5 +41,10 @@ ApplicationWindow {
         text: "Page Not Implemented"
         font.pixelSize: 20
         visible: pageLoader.status !== Loader.Ready
+    }
+
+    Shortcut {
+        sequence: "Esc"
+        onActivated: Qt.quit()
     }
 }

@@ -26,11 +26,37 @@ class AppRepository:
         if limit is not None:
             query += " LIMIT %s"
             params.append(limit)
-
-        print(f"Executing query: {query} with params: {params}")  # Отладка
         self.db.cursor.execute(query, params)
         result = self.db.cursor.fetchall()
-        print(f"Raw result from query: {result}")  # Отладка
         result = [(row[0], float(row[1])) for row in result] if result else []
-        print(f"Top games for range {start_days} to {end_days} days: {result}")
         return result
+
+    def get_games_list(self):
+        """Возвращает список всех игр с названием, датами первого и последнего запуска, общим временем и количеством сессий."""
+        query = """
+            SELECT 
+                COALESCE(a.alias, a.name) as name,
+                MIN(s.start_time) as first_played,
+                MAX(s.end_time) as last_played,
+                SUM(EXTRACT(EPOCH FROM (end_time - start_time))) / 3600.0 as total_hours,
+                COUNT(s.id) as session_count
+            FROM activity_sessions s
+            JOIN apps a ON s.app_id = a.id
+            WHERE s.end_time IS NOT NULL
+            GROUP BY a.id, a.alias, a.name
+            ORDER BY total_hours DESC
+        """
+        self.db.cursor.execute(query)
+        result = self.db.cursor.fetchall()
+        # Преобразуем результат в список словарей для удобства
+        games_list = [
+            {
+                "name": row[0],
+                "first_played": row[1].isoformat() if row[1] else None,
+                "last_played": row[2].isoformat() if row[2] else None,
+                "total_hours": float(row[3]) if row[3] else 0.0,
+                "session_count": int(row[4]) if row[4] else 0
+            }
+            for row in result
+        ] if result else []
+        return games_list

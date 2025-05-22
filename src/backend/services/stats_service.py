@@ -75,6 +75,9 @@ class StatsService:
         streak, start_date, end_date = self.consecutive_days_repo.get_max_consecutive_days(start_days, end_days)
         return (streak, start_date, end_date)
 
+    def get_games_list(self):
+        return self.app_repo.get_games_list()
+
 
 
 

@@ -22,7 +22,6 @@ class TimeStatsRepository:
 
         self.db.cursor.execute(query, params)
         total_seconds = self.db.cursor.fetchone()
-        print(f"Full total seconds for range {start_days} to {end_days} days: {total_seconds}")
         return float(total_seconds[0]) if total_seconds else 0.0
 
     def get_simp_total_seconds(self, start_days=None, end_days=None):
@@ -44,5 +43,4 @@ class TimeStatsRepository:
 
         self.db.cursor.execute(query, params)
         total_seconds = self.db.cursor.fetchone()
-        print(f"Total seconds (sessions > 30 min) for range {start_days} to {end_days} days: {total_seconds}")
         return float(total_seconds[0]) if total_seconds else 0.0

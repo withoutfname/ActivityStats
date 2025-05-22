@@ -1,29 +1,36 @@
 
 C:\Users\emilm\PycharmProjects\ActivityStats\
-├── .venv/                  # Виртуальная среда Python
-├── src/                    # Основной код приложения
-│   ├── backend/            # Логика бэкенда
-│   │   ├── database.py     # Подключение к базе данных
-│   │   ├── repositories/   # Репозитории для работы с данными
+├── .venv/                  
+├── src/                   
+│   ├── backend/            
+│   │   ├── database.py     
+│   │   ├── repositories/
 │   │   │   ├── __init__.py
-│   │   │   ├── base_repository.py
-│   │   │   ├── session_stats_repository.py
-│   │   │   ├── time_analysis_repository.py
+│   │   │   ├── app_repository.py
+│   │   │   ├── consecutive_days_repository.py
+│   │   │   ├── day_of_week_repository.py
+│   │   │   ├── day_repository.py
 │   │   │   ├── max_session_repository.py
 │   │   │   ├── metadata_repository.py
-│   │   │   └── app_repository.py
-│   │   ├── services/       # Сервисы для бизнес-логики
+│   │   │   ├── session_stats_repository.py
+│   │   │   ├── time_of_day_repository.py
+│   │   │   ├── time_stats_repository.py
+│   │   ├── services/  
 │   │   │   ├── __init__.py
 │   │   │   └── stats_service.py
-│   ├── frontend/           # Логика фронтенда (PyQt/QML)
-│   │   ├── controllers/    # Контроллеры
-│   │       ├── __init__.py
-│   │       ├── dashboard_controller.py
-│   │       └── time_controller.py
-│   │           
-│   ├── ui/                 # QML-файлы для интерфейса
-│   │   ├── main.qml        # Главный QML-файл
-│   │   └── pages/          # Подкаталог для страниц
-│   │       ├── Dashboard.qml
-│   │       └── Time.qml    # (если существует)
-├── main.py                 # Точка входа в приложение
+│   ├── frontend/          
+│   │   ├── controllers/    
+│           ├── __init__.py
+│           ├── dashboard_controller.py
+│           └── time_controller.py
+│              
+├── ui/                 
+│   ├── main.qml        
+│   └── pages/          
+│   │     ├── Dashboard.qml
+│   │     └── Time.qml    
+│   │     
+├── resources/                 
+│     ├── images      
+│
+├── main.py                 

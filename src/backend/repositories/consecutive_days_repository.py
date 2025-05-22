@@ -55,23 +55,3 @@ class ConsecutiveDaysRepository:
                 max_streak_end = play_dates[i]
 
         return (max_streak, max_streak_start, max_streak_end)
-
-'''# Тестовый запуск
-if __name__ == "__main__":
-    # Подключаемся к базе данных
-    db = Database(dbname="activitydb", user="postgres", password="pass", host="localhost", port="5432")
-
-    # Создаём экземпляр репозитория
-    repo = ConsecutiveDaysRepository(db)
-
-    # Запускаем метод
-    streak, start_date, end_date = repo.get_max_consecutive_days(start_days=0, end_days=120)
-
-    # Выводим результат
-    if streak > 0:
-        print(f"Max Consecutive Days: {streak} (From: {start_date.strftime('%Y-%m-%d')}, To: {end_date.strftime('%Y-%m-%d')})")
-    else:
-        print("No gaming sessions found in the interval.")
-
-    # Закрываем соединение
-    db.close()'''

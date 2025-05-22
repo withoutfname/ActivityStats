@@ -24,10 +24,8 @@ class TimeController(QObject):
     def avgSessionTime(self):
         try:
             result = self.stats_service.get_avg_interval_playtime(self._startDays, self._endDays)
-            print(f"avgSessionTime for range {self._startDays} to {self._endDays} days: {result}")
             return float(result) if result is not None else 0.0
         except Exception as e:
-            print(f"Error in avgSessionTime: {e}")
             return 0.0
 
     @pyqtProperty(str, notify=intervalChanged)
@@ -46,10 +44,8 @@ class TimeController(QObject):
     def maxIntervalDays(self):
         try:
             result = self.stats_service.get_max_interval_days()
-            print(f"maxIntervalDays: {result}")
             return result
         except Exception as e:
-            print(f"Error in maxIntervalDays: {e}")
             return 30
 
     @pyqtSlot(int, int)
@@ -57,7 +53,6 @@ class TimeController(QObject):
         if self._startDays != startDays or self._endDays != endDays:
             self._startDays = startDays
             self._endDays = endDays
-            print(f"Interval set to {startDays} to {endDays} days")
             self.intervalChanged.emit()
 
 
@@ -67,7 +62,6 @@ class TimeController(QObject):
             result = self.stats_service.get_avg_day_playtime(self._startDays, self._endDays)
             return float(result) if result is not None else 0.0
         except Exception as e:
-            print(f"Error in avgDayPlaytime: {e}")
             return 0.0
 
     @pyqtProperty(int, notify=intervalChanged)
@@ -76,7 +70,6 @@ class TimeController(QObject):
             result = self.stats_service.get_simp_session_count(self._startDays, self._endDays)
             return int(result) if result is not None else 0
         except Exception as e:
-            print(f"Error in simpSessionCount: {e}")
             return 0
 
     @pyqtProperty(int, notify=intervalChanged)
@@ -85,7 +78,7 @@ class TimeController(QObject):
             result = self.stats_service.get_full_session_count(self._startDays, self._endDays)
             return int(result) if result is not None else 0
         except Exception as e:
-            print(f"Error in fullSessionCount: {e}")
+
             return 0
 
     @pyqtProperty(int, notify=intervalChanged)
@@ -94,7 +87,6 @@ class TimeController(QObject):
             result = self.stats_service.get_full_total_playtime(self._startDays, self._endDays)
             return int(result) if result is not None else 0
         except Exception as e:
-            print(f"Error in simpSessionCount: {e}")
             return 0
 
     @pyqtProperty('QVariantList', notify=intervalChanged)
@@ -103,7 +95,6 @@ class TimeController(QObject):
             duration, game_name, date = self.stats_service.get_max_session_duration(self._startDays, self._endDays)
             return [float(duration), game_name if game_name else '', date if date else '']
         except Exception as e:
-            print(f"Error in maxSessionDuration: {e}")
             return [0.0, '', '']
 
     @pyqtProperty('QVariantList', notify=intervalChanged)
@@ -113,7 +104,6 @@ class TimeController(QObject):
                                                                                                      self._endDays)
             return [float(duration), date if date else '', game_name if game_name else '', int(session_count)]
         except Exception as e:
-            print(f"Error in maxDailyGameSession: {e}")
             return [0.0, '', '', 0]
 
     @pyqtProperty('QVariantList', notify=intervalChanged)
@@ -123,7 +113,6 @@ class TimeController(QObject):
                                                                                            self._endDays)
             return [float(duration), date if date else '', game_details if game_details else '']
         except Exception as e:
-            print(f"Error in maxDailyTotalDuration: {e}")
             return [0.0, '', '']
 
     @pyqtProperty('QVariantList', notify=intervalChanged)
@@ -132,7 +121,7 @@ class TimeController(QObject):
             playtime = self.stats_service.get_playtime_by_day_of_week(self._startDays, self._endDays)
             return [float(x) for x in playtime]
         except Exception as e:
-            print(f"Error in playtimeByDayOfWeek: {e}")
+
             return [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
     @pyqtProperty('QVariantList', notify=intervalChanged)
@@ -142,7 +131,7 @@ class TimeController(QObject):
             return [float(playtime.get("Morning", 0.0)), float(playtime.get("Afternoon", 0.0)),
                     float(playtime.get("Evening", 0.0)), float(playtime.get("Night", 0.0))]
         except Exception as e:
-            print(f"Error in playtimeByTimeOfDay: {e}")
+
             return [0.0, 0.0, 0.0, 0.0]
 
     @pyqtProperty('QVariantList', notify=intervalChanged)
@@ -153,5 +142,5 @@ class TimeController(QObject):
             end_str = end_date.strftime('%d-%m-%Y') if end_date else ''
             return [int(streak), start_str, end_str]
         except Exception as e:
-            print(f"Error in maxConsecutiveDays: {e}")
+
             return [0, '', '']

@@ -22,7 +22,6 @@ class SessionCountRepository:
 
         self.db.cursor.execute(query, params)
         count = self.db.cursor.fetchone()
-        print(f"Full session count for range {start_days} to {end_days} days: {count}")
         return int(count[0]) if count else 0
 
     def get_simp_session_count(self, start_days=None, end_days=None):
@@ -44,5 +43,4 @@ class SessionCountRepository:
 
         self.db.cursor.execute(query, params)
         count = self.db.cursor.fetchone()
-        print(f"Session count (> 30 min) for range {start_days} to {end_days} days: {count}")
         return int(count[0]) if count else 0

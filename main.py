@@ -5,7 +5,7 @@ from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtWidgets import QApplication
 from src.backend.database import Database
 from src.backend.services.stats_service import StatsService
-from src.frontend.controllers import DashboardController, TimeController
+from src.frontend.controllers import DashboardController, TimeController, LibraryController
 
 if __name__ == "__main__":
     print("Starting application...")
@@ -29,6 +29,7 @@ if __name__ == "__main__":
     try:
         dashboard_controller = DashboardController(stats_service)
         time_controller = TimeController(stats_service)
+        library_controller = LibraryController(stats_service)
         print("Controllers created")
     except Exception as e:
         print(f"Controller error: {e}")
@@ -50,12 +51,13 @@ if __name__ == "__main__":
     # Set controllers in QML context
     engine.rootContext().setContextProperty("dashboardController", dashboard_controller)
     engine.rootContext().setContextProperty("timeController", time_controller)
+    engine.rootContext().setContextProperty("libraryController", library_controller)
     print("Controllers set in QML context")
 
     # Load QML with absolute path
     print("Loading QML...")
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    qml_path = os.path.join(current_dir, "../ui/main.qml")
+    qml_path = os.path.join(current_dir, "ui/main.qml")
     if not os.path.exists(qml_path):
         print(f"Error: QML file {qml_path} not found")
         sys.exit(-1)

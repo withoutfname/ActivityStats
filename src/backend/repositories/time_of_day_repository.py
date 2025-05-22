@@ -61,22 +61,4 @@ class TimeOfDayRepository:
             duration_hours = duration_seconds / 3600.0
             playtime_by_time_of_day[interval] += duration_hours
 
-        # Выводим результаты в консоль
-        for period, hours in playtime_by_time_of_day.items():
-            print(f"{period}: {hours:.1f} hours")
-
         return playtime_by_time_of_day
-'''
-# Тестовый запуск
-if __name__ == "__main__":
-    # Подключаемся к базе данных
-    db = Database(dbname="activitydb", user="postgres", password="pass", host="localhost", port="5432")
-
-    # Создаём экземпляр репозитория
-    repo = TimeOfDayRepository(db)
-
-    # Запускаем метод
-    playtime = repo.get_playtime_by_time_of_day(start_days=0, end_days=120)
-
-    # Закрываем соединение
-    db.close()'''
