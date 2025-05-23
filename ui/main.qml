@@ -9,6 +9,10 @@ ApplicationWindow {
     title: "ActivityStats"
     visibility: Window.Maximized
 
+    // Устанавливаем минимальные размеры окна
+    minimumWidth: 1920
+    minimumHeight: 1080
+
     Component.onCompleted: {
         console.log("Window width:", window.width)
         console.log("Window height:", window.height)
@@ -25,7 +29,7 @@ ApplicationWindow {
     header: TabBar {
         id: tabBar
         width: parent.width
-         TabButton { text: "Dashboard" }
+        TabButton { text: "Dashboard" }
         TabButton { text: "Time" }
         TabButton { text: "Library" }
     }

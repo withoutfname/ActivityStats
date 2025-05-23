@@ -31,6 +31,10 @@ C:\Users\emilm\PycharmProjects\ActivityStats\
 │   │     └── Time.qml    
 │   │     
 ├── resources/                 
-│     ├── images      
+│     ├── images/  
+│     │        ├── app_icon.ico
+│     │  
+│     ├── app_icons/  
+│     │       ├── images.jpg
 │
 ├── main.py                 

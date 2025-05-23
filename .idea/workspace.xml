@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (time.qml) add time of day stats, max consecutive days and add scroll view">
-      <change afterPath="$PROJECT_DIR$/resources/images/app_icon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend/controllers/library_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/pages/Library.qml" afterDir="false" />
+    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (library.qml) add games gridview">
+      <change afterPath="$PROJECT_DIR$/resources/app_icons/images.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/auto_parse_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/images/manual_icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readm.md" beforeDir="false" afterPath="$PROJECT_DIR$/readm.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/app_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/app_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/consecutive_days_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/consecutive_days_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/day_of_week_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/day_of_week_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/session_count_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/session_count_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/time_of_day_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/time_of_day_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/repositories/time_stats_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/time_stats_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/services/stats_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/services/stats_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/controllers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controllers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/controllers/dashboard_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controllers/dashboard_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/controllers/time_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controllers/time_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/main.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/pages/Library.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Library.qml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +75,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/emilm/PycharmProjects/ActivityStats/resources/images",
     "settings.editor.selected.configurable": "reference.idesettings.debugger.python"
   }
 }]]></component>
@@ -97,7 +88,12 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\resources\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\resources\images" />
+      <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\resources\app_icons" />
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats" />
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\recources\images" />
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\src" />
@@ -315,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747714362844</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat (library.qml) add games gridview">
+      <option name="closed" value="true" />
+      <created>1747887556862</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747887556862</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -349,6 +353,7 @@
     <MESSAGE value="feat (time.qml) add total interval playtime" />
     <MESSAGE value="feat (time.qml) add day of week stats" />
     <MESSAGE value="feat (time.qml) add time of day stats, max consecutive days and add scroll view" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (time.qml) add time of day stats, max consecutive days and add scroll view" />
+    <MESSAGE value="feat (library.qml) add games gridview" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (library.qml) add games gridview" />
   </component>
 </project>
