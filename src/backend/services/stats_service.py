@@ -78,6 +78,10 @@ class StatsService:
     def get_games_list(self):
         return self.app_repo.get_games_list()
 
+    def update_game_metadata(self, app_id, icon_path, genre, year):
+        """Обновляет метаданные игры через AppRepository."""
+        self.app_repo.update_game_metadata(app_id, icon_path, genre, year)
+
 
 
 
