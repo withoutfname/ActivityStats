@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (library.qml) add name, info, icons into gridview">
-      <change afterPath="$PROJECT_DIR$/ui/pages/SimpleEditDialog.qml" afterDir="false" />
+    <list default="true" id="35798375-5a98-487a-a6f4-ec176a1665ea" name="Changes" comment="feat (library.qml) add dialog to edit/save metadata">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/app_icons/images.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/app_icons/images.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/backend/repositories/app_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/repositories/app_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/services/stats_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/services/stats_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/services/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/controllers/library_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/controllers/library_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/pages/Library.qml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pages/Library.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/pages/SimpleEditDialog.qml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,28 +57,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.__init__.executor": "Run",
-    "Python.app_repository.executor": "Run",
-    "Python.consecutive_days_repository.executor": "Run",
-    "Python.controller.executor": "Run",
-    "Python.dashboard_controller.executor": "Run",
-    "Python.database.executor": "Run",
-    "Python.day_of_week_repository.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.resources.executor": "Run",
-    "Python.stats_service.executor": "Run",
-    "Python.time_of_day_repository.executor": "Run",
-    "Python.time_stats_repository.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/emilm/PycharmProjects/ActivityStats/ui/pages",
-    "settings.editor.selected.configurable": "reference.idesettings.debugger.python"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app_repository.executor&quot;: &quot;Run&quot;,
+    &quot;Python.consecutive_days_repository.executor&quot;: &quot;Run&quot;,
+    &quot;Python.controller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dashboard_controller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.day_of_week_repository.executor&quot;: &quot;Run&quot;,
+    &quot;Python.library_controller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.resources.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stats_service.executor&quot;: &quot;Run&quot;,
+    &quot;Python.time_of_day_repository.executor&quot;: &quot;Run&quot;,
+    &quot;Python.time_stats_repository.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/emilm/PycharmProjects/ActivityStats/ui/pages&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.python&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ActivityStats" is-module-sdk="true">
@@ -94,11 +95,11 @@
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\ui\components" />
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\resources\app_icons" />
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\resources\images" />
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats" />
       <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\recources\images" />
-      <recent name="C:\Users\emilm\PycharmProjects\ActivityStats\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -329,7 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747976698528</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat (library.qml) add dialog to edit/save metadata">
+      <option name="closed" value="true" />
+      <created>1748235999427</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1748235999427</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -365,6 +374,7 @@
     <MESSAGE value="feat (time.qml) add time of day stats, max consecutive days and add scroll view" />
     <MESSAGE value="feat (library.qml) add games gridview" />
     <MESSAGE value="feat (library.qml) add name, info, icons into gridview" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (library.qml) add name, info, icons into gridview" />
+    <MESSAGE value="feat (library.qml) add dialog to edit/save metadata" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (library.qml) add dialog to edit/save metadata" />
   </component>
 </project>

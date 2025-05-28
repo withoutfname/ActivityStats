@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import Qt.labs.platform 1.1 as Platform
 
 Item {
     Component.onCompleted: {
@@ -79,7 +80,7 @@ Item {
 
                             Image {
                                 id: gameImage
-                                source: Qt.resolvedUrl(modelData.icon_path).toString()
+                                source: "resources/app_icons/2_icon.jpg"
                                 width: 140
                                 height: 140
                                 fillMode: Image.PreserveAspectFit
@@ -147,9 +148,6 @@ Item {
                             }
                         }
 
-
-
-                        // Кнопки в правом нижнем углу
                         RowLayout {
                             id: buttonRow
                             anchors.right: parent.right
@@ -157,7 +155,7 @@ Item {
                             anchors.rightMargin: 10
                             anchors.bottomMargin: 10
                             spacing: 5
-                            visible: true  // Скрыты по умолчанию
+                            visible: true
 
                             Button {
                                 id: autoButton
@@ -176,7 +174,6 @@ Item {
                                 }
                                 onClicked: {
                                     console.log("Auto parse clicked for", modelData.name)
-                                    // Здесь код для авто парсинга
                                 }
                             }
 
@@ -197,6 +194,7 @@ Item {
                                 }
                                 onClicked: {
                                     console.log("Manual parse clicked for", modelData.name)
+                                    editDialog.currentGame = modelData
                                     editDialog.open()
                                 }
                             }
@@ -208,12 +206,10 @@ Item {
                             onEntered: {
                                 card.color = "#f0f0f0"
                                 hoverInfo.visible = true
-                                //buttonRow.visible = true
                             }
                             onExited: {
                                 card.color = "white"
                                 hoverInfo.visible = false
-                                //buttonRow.visible = false
                             }
                         }
                     }
@@ -222,19 +218,211 @@ Item {
         }
     }
 
-    // Простой диалог внутри Library.qml
     Dialog {
         id: editDialog
         title: "Edit Game Metadata"
-        standardButtons: Dialog.Close  // Кнопка закрытия
+        standardButtons: Dialog.Close
+        width: 800
+        height: 800
+        anchors.centerIn: parent
 
-        width: 200
-        height: 100
+        property var currentGame: ({})
 
-        Label {
-            anchors.centerIn: parent
-            text: "Привет"
-            font.pixelSize: 16
+        onOpened: {
+            if (currentGame) {
+                gameNameLabel.text = currentGame.name || "Unnamed Game"
+                previewImage.source = currentGame.icon_path ? Qt.resolvedUrl(currentGame.icon_path).toString() : ""
+                genreRepeater.updateSelectedGenres(currentGame.genre ? currentGame.genre.split(", ") : [])
+                yearField.text = currentGame.year > 0 ? currentGame.year : ""
+                console.log("Opened dialog for app_id:", currentGame.app_id, "currentGame:", JSON.stringify(currentGame))
+            }
+        }
+
+        Platform.FileDialog {
+            id: fileDialog
+            title: "Select Game Image"
+            nameFilters: ["Image files (*.png *.jpg *.jpeg)"]
+            folder: Platform.StandardPaths.writableLocation(Platform.StandardPaths.PicturesLocation)
+
+            onAccepted: {
+                if (editDialog.currentGame && editDialog.currentGame.app_id) {
+                    var sourcePath = fileDialog.file.toString().replace(/^file:\/\/\//, "")
+                    console.log("Selecting icon for app_id:", editDialog.currentGame.app_id, "sourcePath:", sourcePath)
+                    var newIconPath = libraryController.copyIcon(sourcePath, editDialog.currentGame.app_id)
+                    if (newIconPath) {
+                        previewImage.source = Qt.resolvedUrl(newIconPath).toString()
+                        editDialog.currentGame.icon_path = newIconPath
+                        console.log("New icon path:", newIconPath)
+                    } else {
+                        console.log("Failed to copy icon, keeping old path:", editDialog.currentGame.icon_path)
+                    }
+                } else {
+                    console.log("No currentGame or app_id available")
+                }
+            }
+        }
+
+        ScrollView {
+            id: dialogScrollView
+            anchors.fill: parent
+            clip: true
+            ScrollBar.vertical.policy: ScrollBar.AsNeeded
+            ScrollBar.horizontal.policy: ScrollBar.AsNeeded
+
+            ColumnLayout {
+                width: dialogScrollView.width
+                spacing: 15
+                anchors.margins: 20
+
+                // Название игры
+                Label {
+                    id: gameNameLabel
+                    text: "Game Name"
+                    font.pixelSize: 18
+                    font.bold: true
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                // Предпросмотр картинки
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 10
+
+                    Label {
+                        text: "Icon Preview:"
+                        font.pixelSize: 14
+                    }
+
+                    Image {
+                        id: previewImage
+                        width: 200
+                        height: 200
+                        fillMode: Image.PreserveAspectFit
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+
+                    Button {
+                        text: "Change Icon"
+                        onClicked: {
+                            fileDialog.open()
+                        }
+                    }
+                }
+
+                // Выбор жанра через кнопки
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 10
+
+                    Label {
+                        text: "Genre:"
+                        font.pixelSize: 14
+                    }
+
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 100
+                        clip: true
+
+                        GridLayout {
+                            columns: 8
+                            columnSpacing: 5
+                            rowSpacing: 5
+
+                            Repeater {
+                                id: genreRepeater
+                                model: [
+                                    "Action", "Adventure", "RPG", "Strategy", "Simulation",
+                                    "Puzzle", "Platformer", "Shooter", "Racing", "Sports",
+                                    "Horror", "Sandbox", "Stealth", "MMO", "Casual"
+                                ]
+
+                                property var selectedGenres: []
+
+                                function updateSelectedGenres(genres) {
+                                    selectedGenres = genres || []
+                                    for (var i = 0; i < count; i++) {
+                                        var button = itemAt(i)
+                                        button.checked = selectedGenres.includes(button.text)
+                                    }
+                                }
+
+                                Button {
+                                    text: modelData
+                                    checkable: true
+                                    checked: genreRepeater.selectedGenres.includes(modelData)
+                                    onClicked: {
+                                        if (checked) {
+                                            if (!genreRepeater.selectedGenres.includes(modelData)) {
+                                                genreRepeater.selectedGenres.push(modelData)
+                                            }
+                                        } else {
+                                            var index = genreRepeater.selectedGenres.indexOf(modelData)
+                                            if (index !== -1) {
+                                                genreRepeater.selectedGenres.splice(index, 1)
+                                            }
+                                        }
+                                        console.log("Selected genres:", genreRepeater.selectedGenres)
+                                    }
+
+                                    background: Rectangle {
+                                        color: checked ? "#d0e0ff" : "white"
+                                        border.color: "gray"
+                                        border.width: 1
+                                        radius: 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Поле для года
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 10
+
+                    Label {
+                        text: "Year:"
+                        font.pixelSize: 14
+                    }
+
+                    TextField {
+                        id: yearField
+                        Layout.preferredWidth: 100
+                        validator: IntValidator { bottom: 1990 }
+                        placeholderText: "Enter year (1990+)"
+                    }
+                }
+
+                Button {
+                    text: "Save"
+                    Layout.alignment: Qt.AlignHCenter
+                    onClicked: {
+                    /*
+                        if (currentGame && currentGame.app_id) {
+                            var newYear = parseInt(yearField.text) || 0
+                            var genresString = genreRepeater.selectedGenres.join(", ")
+                            console.log("Saving metadata:", {
+                                "app_id": currentGame.app_id,
+                                "icon_path": currentGame.icon_path || "",
+                                "genre": genresString,
+                                "year": newYear
+                            })
+                            libraryController.saveManualMetadata(
+                                currentGame.app_id,
+                                currentGame.icon_path || "",
+                                genresString,
+                                newYear
+                            )
+                        } else {
+                            console.log("No currentGame or app_id for saving")
+                        }
+                        */
+                        editDialog.close()
+                    }
+                }
+            }
         }
     }
 }

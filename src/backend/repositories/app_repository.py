@@ -42,7 +42,8 @@ class AppRepository:
                 COUNT(s.id) as session_count,
                 gm.genre,
                 gm.year,
-                gm.icon_path
+                gm.icon_path,
+                a.id as app_id  -- Добавляем app_id
             FROM activity_sessions s
             JOIN apps a ON s.app_id = a.id
             LEFT JOIN game_metadata gm ON a.id = gm.app_id
@@ -62,8 +63,8 @@ class AppRepository:
                 "session_count": int(row[4]) if row[4] else 0,
                 "genre": row[5] if row[5] is not None else "Unknown",
                 "year": int(row[6]) if row[6] is not None else None,
-                "icon_path": row[7] if row[7] is not None else "../../resources/app_icons/images.jpg"
-                # Дефолтная иконка
+                "icon_path": row[7] if row[7] is not None else "../../resources/app_icons/images.jpg",
+                "app_id": row[8]  # Добавляем app_id в словарь
             }
             for row in result
         ] if result else []
@@ -71,6 +72,12 @@ class AppRepository:
 
     def update_game_metadata(self, app_id, icon_path, genre, year):
         """Обновляет или добавляет метаданные для игры в таблице game_metadata."""
+        # Очищаем жанры перед сохранением
+        if genre:
+            genre = genre.strip()
+            if not genre:
+                genre = None
+        print(f"Updating metadata for app_id={app_id}: icon_path={icon_path}, genre={genre}, year={year}")
         query = """
             INSERT INTO game_metadata (app_id, icon_path, genre, year)
             VALUES (%s, %s, %s, %s)
@@ -81,4 +88,4 @@ class AppRepository:
                 year = EXCLUDED.year
         """
         self.db.cursor.execute(query, (app_id, icon_path, genre, year))
-        self.db.conn.commit()
+        self.db.connection.commit()

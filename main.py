@@ -39,13 +39,9 @@ if __name__ == "__main__":
     print("Setting up QML engine...")
     engine = QQmlApplicationEngine()
 
-    # Connect error signals
-    def handle_qml_error(error):
-        print(f"QML Error: {error.toString()}")
-        for e in error.errors():
-            print(f"  {e.toString()}")
 
-    engine.warnings.connect(handle_qml_error)
+
+
     print("QML error handler connected")
 
     # Set controllers in QML context
